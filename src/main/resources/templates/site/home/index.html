@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Album example · Bootstrap v5.0</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+          <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}" href="#">
+                <img th:src="@{https://farm5.staticflickr.com/4230/35108607076_fc9c72a7f4_o.png}"  src="https://farm5.staticflickr.com/4230/35108607076_fc9c72a7f4_o.png" width="auto" height="70" class="d-inline-block align-top" alt=""/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto"></ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/site/home/index}" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/site/home/shop}" href="#">Shop</a>
+                    </li>
+                    
+                    <!-- <li th:if="${session.isLogin != null}" class="nav-item active">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/alogout}" href="#">Logout</a>
+                    </li> -->
+
+                    <li th:if="${session.username == 'admin123'}" class="nav-item active">
+                      <a th:href="@{/admin/accounts/home}" class="nav-link">Admin</a>
+                  </li>
+                    <li  class="nav-item active">
+                        <a style="padding-right: 4px ;" class="nav-link" th:href="@{/site/cart/itemCart}" href="#">Cart</a>
+                    </li>
+                    <li  class="nav-item active">
+                        <span style="padding-left: 0px ;" class="nav-link" th:text="${cartCount}"></span>
+                    </li>
+
+                    <!-- <li th:if="${session.isLogin == null}" class="nav-item active">
+                      <a class="nav-link"  th:href="@{/alogin}" href="#">Login</a>
+                  
+                    </li> -->
+
+                    <li  th:if="${session.isLogin == null}" class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdownId"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span style="color:black;font-weight: bold;text-transform: uppercase;font-size: 15px;">My Account</span>
+                    </a>
+                    <div  class="dropdown-menu" aria-labelledby="dropdownId" >
+                      
+                      
+                      <a class="nav-link"  th:href="@{/alogin}" href="#">Login</a>
+                      <a  class="nav-link"  th:href="@{/site/login/add}">Register</a>
+                      
+                    </div>
+                  </li>
+                  
+                    </li>
+
+                    <li  th:if="${session.isLogin != null}" class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdownId"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span style="color:black;font-weight: bold;text-transform: uppercase;font-size: 15px;" th:text="${session.username}"></span>
+                    </a>
+                    <div  class="dropdown-menu" aria-labelledby="dropdownId" >
+                      
+                      
+                      <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/alogout}" href="#">Logout</a>
+                      <a  class="nav-link"  th:href="@{'/site/home/edit/' + ${session.username}}">Change Password</a>
+                      
+                    </div>
+                  </li>
+                    
+                </ul>
+    
+            </div>
+        </div>
+    </nav>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Shope Simple</h1>
+        <p class="lead text-muted">The shop is just starting to work and takes time to complete, and this is the simple model that the shop is aiming for..</p>
+        <p>
+          <a th:href="@{/site/home/shop}" class="btn btn-primary my-2">View list and order</a>
+          
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="row p-2">
+    <div class="container">
+
+      
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+        
+        
+            <div class="col-3 mt-2"th:each="product : ${products}">
+              <div class="card shadow-sm">
+                <img th:src="@{${'/uploads/images/' + product.image}}" th:alt="${product.name}" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+    
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <h4>₹ <span th:text="${product.unitPrice}"></span></h4>
+                    <p th:text="${product.description}" >Suresh Dasari is a founder and technical lead developer in tutlane.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a th:href="@{/site/home/viewproduct/{id}(id=${product.productId})}" class="btn btn-sm btn-outline-secondary">View</a>
+                     
+                    </div>
+             
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+
+        
+
+          
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-muted py-5">
+  
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
